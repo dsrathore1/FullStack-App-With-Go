@@ -1,0 +1,19 @@
+version: "3"
+
+volumes:
+  pg_db:
+
+services:
+  db:
+    container_name: DB
+    image: postgres:alpine3.19
+    environment:
+      - POSTGRES_USER=${PG_USR}
+      - POSTGRES_DB=${PG_DB}
+      - POSTGRES_PASSWORD=${PG_PWD}
+      - PGDATA=${PG_DATA}
+    restart: always
+    volumes:
+      - pg_db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
